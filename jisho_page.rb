@@ -80,7 +80,12 @@ class JishoPage
   end
 
   def get_meanings(word_element)
+    meanings = Array.new
+    meaning_container_divs = word_element.css("div.meanings-wrapper/div")
+    # Structure since here is one div.meaning-tag and one div.meaning-wrapper
+    meaning_container_divs.each do |div|
 
+    end
   end 
 end
 
