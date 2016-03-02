@@ -5,6 +5,7 @@ require 'open-uri'
 
 require_relative 'word'
 require_relative 'character'
+require_relative 'meaning'
 
 class JishoPage
 
@@ -45,6 +46,7 @@ class JishoPage
       word.full_word = get_word_text(result)
       word.characters = get_characters(result)
       word.furigana = get_furigana(result) 
+      word.meanings = get_meanings(result)
 
       words.push( word )
     end
@@ -83,15 +85,26 @@ class JishoPage
     meanings = Array.new
     meaning_container_divs = word_element.css("div.meanings-wrapper/div")
     # Structure since here is one div.meaning-tag and one div.meaning-wrapper
+    tag = ''
     meaning_container_divs.each do |div|
-
+      cls = div.attribute('class').text.strip
+      if cls.eql? "meaning-tags"
+        tag = div.text.strip
+      elsif not BANNED_TAGS.include? tag 
+        meaning = Meaning.new
+        meaning.tag = tag
+        meaning.text = div.css("div.meaning-definition/span.meaning-meaning").text.strip
+        
+        puts meaning.tag + " - " + meaning.text
+        meanings.push(meaning)
+      end
     end
   end 
 end
 
 jisho = JishoPage.new
-#jisho.search('#jlpt-n5 #words', 2)
-jisho.search('onakagasuku')
+jisho.search('#jlpt-n5 #words', 2)
+#jisho.search('onakagasuku')
 
 #puts jisho.get_word_count
 jisho.get_words
