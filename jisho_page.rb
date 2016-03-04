@@ -12,7 +12,7 @@
 #GNU General Public License for more details.
 #
 #You should have received a copy of the GNU General Public License
-#along with this program.  If inot, see <http://www.gnu.org/licenses/>.
+#along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 require 'rubygems'
 require 'nokogiri'
@@ -25,11 +25,11 @@ require_relative 'meaning'
 
 class JishoPage
 
-  JISHO_URL = 'http://jisho.org/search/'
-
-  BANNED_TAGS = [ 'Wikipedia definition',
-                  'Other forms',
-                  'Notes' ]
+  JISHO_URL         = 'http://jisho.org/search/'
+  ELEMENTS_PER_PAGE = 20
+  BANNED_TAGS       = [ 'Wikipedia definition',
+                        'Other forms',
+                        'Notes' ]
 
   # Loads JISHO result page with a given search_term and a given page (defaulting to 1)
   def search(search_term, page=1)
@@ -111,16 +111,9 @@ class JishoPage
         meaning.tag = tag
         meaning.text = div.css("div.meaning-definition/span.meaning-meaning").text.strip
         
-        puts meaning.tag + " - " + meaning.text
         meanings.push(meaning)
       end
     end
   end 
 end
 
-jisho = JishoPage.new
-jisho.search('#jlpt-n5 #words', 2)
-#jisho.search('onakagasuku')
-
-#puts jisho.get_word_count
-jisho.get_words
