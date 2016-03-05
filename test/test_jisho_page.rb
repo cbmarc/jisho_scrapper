@@ -14,7 +14,7 @@
 #You should have received a copy of the GNU General Public License
 #along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-require_relative '../lib/jisho_page'
+require 'jisho_page'
 require 'test/unit'
 
 class TestJishoPage < Test::Unit::TestCase
@@ -30,7 +30,7 @@ class TestJishoPage < Test::Unit::TestCase
     assert_equal(WORD_COUNT, @page.get_word_count)
   end
 
-	def test_get_words
+  def test_get_words
     words = @page.get_words
     assert_not_nil(words)
     assert_equal(JishoPage::ELEMENTS_PER_PAGE, words.count)

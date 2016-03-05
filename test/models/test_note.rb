@@ -27,4 +27,16 @@ class TestNote < Test::Unit::TestCase
     assert(note.csum.length == 8, "Checksum should be 8 characters long")
   end
 
+  def test_initializer
+    note = Note.new
+    assert_not_nil(note.id)
+    assert_not_nil(note.guid)
+    assert_not_nil(note.mod)
+    assert_not_nil(note.usn)
+    assert(note.id.to_s.length > 0)
+    assert(note.guid.to_s.length > 0)
+    assert(note.mod < Time.new)
+    assert_equal(-1, note.usn)
+  end
+
 end

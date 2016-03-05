@@ -15,6 +15,7 @@
 #along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 require 'digest/sha1'
+require 'securerandom'
 
 # Note object from anki model
 class Note
@@ -31,6 +32,14 @@ class Note
   attr_reader   :csum
   attr_accessor :flag
   attr_accessor :data
+
+  def initialize
+    random_base = 10000000
+    @id = random_base + Random.rand(random_base)
+    @guid = SecureRandom.uuid
+    @mod = Time.new
+    @usn = -1 
+  end
 
   # Autogenerating csum
   def flds=(new_flds)
