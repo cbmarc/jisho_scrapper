@@ -31,6 +31,11 @@ class JishoPage
                         'Other forms',
                         'Notes' ]
 
+  def load_from_file(file, page=1)
+    @doc = Nokogiri::HTML(open(file))
+    return @doc 
+  end
+
   # Loads JISHO result page with a given search_term and a given page (defaulting to 1)
   def search(search_term, page=1)
     url = JISHO_URL + search_term + "?page=#{page}"
@@ -67,7 +72,7 @@ class JishoPage
       words.push( word )
     end
 
-    return results
+    return words
   end
 
   def get_word_text(word_element)       
@@ -95,6 +100,7 @@ class JishoPage
     furigana_spans.each do |kana|
       furiganas.push( kana.text.strip )
     end
+    return furiganas
   end
 
   def get_meanings(word_element)
@@ -114,6 +120,8 @@ class JishoPage
         meanings.push(meaning)
       end
     end
+    return meanings
   end 
+
 end
 
