@@ -15,6 +15,9 @@
 #along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class Card
+
+  TABLE_NAME    = "cards"
+
 	attr_accessor :id
 	attr_accessor :nid
 	attr_accessor :did
