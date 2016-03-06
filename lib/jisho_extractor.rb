@@ -39,6 +39,3 @@ class JishoExtractor
     return extract(Tags::NOKEN_5 + " " + Tags::WORD)
   end
 end
-
-extractor = JishoExtractor.new
-words = extractor.extractNoken5
