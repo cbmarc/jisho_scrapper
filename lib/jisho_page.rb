@@ -19,9 +19,9 @@ require 'nokogiri'
 require 'uri'
 require 'open-uri'
 
-require_relative 'word'
-require_relative 'character'
-require_relative 'meaning'
+require_relative 'models/word'
+require_relative 'models/character'
+require_relative 'models/meaning'
 
 class JishoPage
 

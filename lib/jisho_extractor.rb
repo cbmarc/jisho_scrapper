@@ -15,8 +15,8 @@
 #along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 require_relative 'jisho_page'
-require_relative 'tags'
-require_relative 'word'
+require_relative 'models/tags'
+require_relative 'models/word'
 
 class JishoExtractor
 
