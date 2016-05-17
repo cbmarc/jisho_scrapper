@@ -1,6 +1,6 @@
 # jisho_scrapper
 
-**Project status:** Ongoing
+**Project status:** On-going
 
 Scrapper for the Jisho webpage, a japanese dictionary.
 
