@@ -31,16 +31,11 @@ class AnkiConverter
   def create_anki_from_words(words)
     db_manager = DBManager.new OUTPUT_DATABASE
     words.each do |word|
-      #For note
-      #tags
-      #flds card content separated by \x1f char
-      #sfld card front without html 
       note = Note.new
       note.flds = word.full_word + Note::SEPARATOR + word.meaning.to_s
       note.sfld = word.full_word
-      #For card
-      #nid note id
-      card = Card.new
+      
+	  card = Card.new
       card.nid = note.id
       
       db_manager.insert_object(note)
