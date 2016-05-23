@@ -16,8 +16,8 @@
 
 require_relative 'db_manager'
 require_relative 'jisho_extractor'
-require_relative 'models/card'
-require_relative 'models/note'
+require_relative 'models/anki/card'
+require_relative 'models/anki/note'
 require_relative 'models/word'
 require_relative 'models/meaning'
 require_relative 'models/tags'
