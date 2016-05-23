@@ -22,31 +22,39 @@ require_relative 'models/word'
 require_relative 'models/meaning'
 require_relative 'models/tags'
 require_relative 'models/character'
-require 'zip'
+require 'zip/zip'
 
 class AnkiConverter
 
-  OUTPUT_DATABASE = 'bin/anki.sqlite'
+  OUTPUT_DATABASE = 'anki.sqlite'
 
-  def create_anki_from_words(words)
-    db_manager = DBManager.new OUTPUT_DATABASE
+  def create_anki_from_words(anki_path, words)
+    db_manager = DBManager.new anki_path + '/' + OUTPUT_DATABASE
+    db_manager.create_schema
+
     words.each do |word|
       note = Note.new
-      note.flds = word.full_word + Note::SEPARATOR + word.meaning.to_s
+      note.flds = word.full_word + Note::SEPARATOR + word.meanings.to_s
       note.sfld = word.full_word
       
-	  card = Card.new
+	    card = Card.new
       card.nid = note.id
       
       db_manager.insert_object(note)
       db_manager.insert_object(card)
     end
-  end  
-
+   
+    # Create media file
+    File.open(anki_path + "/media", 'w') {|f| f.write("{}") }  
+    Zip::ZipFile.open(anki_path + "/anki.zip", Zip::ZipFile::CREATE) do |zipfile|
+      zipfile.add("media", anki_path + "/" + "media")
+      zipfile.add(OUTPUT_DATABASE, anki_path + "/" + OUTPUT_DATABASE)
+    end  
+  end
 end
 
 extractor = JishoExtractor.new
-words = extractor.extractNoken5Words
+words = extractor.extract('たべる')
 
 anki = AnkiConverter.new
-anki.create_anki_from_words words
+anki.create_anki_from_words("/home/maruku/Desktop/test/", words)

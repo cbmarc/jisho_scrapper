@@ -19,7 +19,7 @@ require 'securerandom'
 
 # Note object from anki model
 class Note
-
+  TABLE_NAME    = 'notes'
   SEPARATOR     = '\x1f'
   attr_accessor :id
   attr_accessor :guid
@@ -30,7 +30,7 @@ class Note
   attr_reader   :flds
   attr_accessor :sfld
   attr_reader   :csum
-  attr_accessor :flag
+  attr_accessor :flags
   attr_accessor :data
 
   def initialize

@@ -18,7 +18,7 @@ require 'sqlite3'
 
 class DBManager
 
-  SCHEMA_FILE = "data/schema_creation.sql"
+  SCHEMA_FILE = File.dirname(__FILE__) + "/../data/schema_creation.sql"
   INSERT      = "INSERT INTO %s (%s) VALUES (%s);"
   SELECT      = "SELECT * FROM %s WHERE id = ?"
 
