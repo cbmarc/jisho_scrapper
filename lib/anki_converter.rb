@@ -26,7 +26,7 @@ require 'zip/zip'
 
 class AnkiConverter
 
-  OUTPUT_DATABASE = 'anki.sqlite'
+  OUTPUT_DATABASE = 'collection.anki2'
 
   def create_anki_from_words(anki_path, words)
     db_manager = DBManager.new anki_path + '/' + OUTPUT_DATABASE
