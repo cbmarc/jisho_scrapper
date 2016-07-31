@@ -14,7 +14,7 @@
 #You should have received a copy of the GNU General Public License
 #along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-require 'models/card.rb'
+require 'models/anki/card'
 require 'db_manager'
 require 'test/unit'
 
