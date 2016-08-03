@@ -13,8 +13,9 @@ I highly encourage the use of the online Jisho dictionary for reference.
 Right now, to use the script you have to call the lib/anki_converter.rb. In the end of that file you will see the code that will be automatically executed upon calling this class. What this test code does is scraps the Noken5 words from jisho and then tries to populate the anki package, although this last part is unfinished. Check for the dependnecies section to see its dependencies.
 
 **Dependencies**
-JishoScrapper depends on:
-* rubygems
-* nokogiri
-* uri
-* open-uri
+
+To install dependencies just run `bundle install` on the project root.
+
+**Tests**
+
+To run unit tests run either `rake test` or `bundle exec rake test`
